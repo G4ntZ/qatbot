@@ -8,7 +8,7 @@ import pysvn
 
 
 class Pauta:
-    jira_user = "jirabot:Kakaroto123"
+    jira_user = ""
 
     def __init__(self, pauta):
         self.pauta = pauta
@@ -38,7 +38,7 @@ class Pauta:
 
     def getListCommitVersion2(self, branch):
         p = subprocess.Popen(["svn", "--non-interactive", "--username", "prov_zt", "--password",
-                             "d3liverance", "log", "-r", "1:HEAD", branch], stdout=subprocess.PIPE)
+                             "", "log", "-r", "1:HEAD", branch], stdout=subprocess.PIPE)
         output, err = p.communicate()
         output = re.findall("r\d+", output)
         versions = []
@@ -47,7 +47,7 @@ class Pauta:
         return versions
 
     def getHtmlPauta(self):
-        resp = requests.get(self.url_pauta, auth=('jirabot', 'Kakaroto123'))
+        resp = requests.get(self.url_pauta, auth=('jirabot', ''))
         return resp.text
 
     def getHtmlTab(self):
